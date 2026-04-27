@@ -1,0 +1,12 @@
+Dear Hiring Manager at {{ company_name }},
+
+I am writing to express my interest in the {{ role }} position. 
+
+{{ custom_context }}
+
+With my strong background in software development, specifically working with {{ tech_stack }}, I am confident I can make an immediate impact at your company. I am also fluent in {{ language }}, which aligns well with your team's requirements.
+
+I have attached my resume and certificates for your review. I look forward to the possibility of discussing this exciting opportunity with you.
+
+Sincerely,
+Max

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pymupdf
+python-dotenv
+pydantic
+jinja2
+playwright
+google-generativeai
