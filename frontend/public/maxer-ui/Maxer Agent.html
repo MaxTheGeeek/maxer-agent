@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Maxer Agent · Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:        #0A0B0F;
+  --bg-2:      #0E1015;
+  --surf-1:    rgba(255,255,255,0.025);
+  --surf-2:    rgba(255,255,255,0.045);
+  --border-1:  rgba(255,255,255,0.06);
+  --border-2:  rgba(255,255,255,0.10);
+  --fg-1:      rgba(240,242,247,0.95);
+  --fg-2:      rgba(200,205,215,0.78);
+  --fg-3:      rgba(150,158,172,0.58);
+  --accent-1:  oklch(0.78 0.14 240);
+  --accent-2:  oklch(0.55 0.18 240);
+  --ui:   "Inter Tight", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body, #root {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  background: #050608;
+  color: var(--fg-1);
+  font-family: var(--ui);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+button { font-family: inherit; }
+.tbtn:hover:not(:disabled) { background: rgba(255,255,255,0.07) !important; }
+.tbtn:disabled { opacity: 0.5; }
+.root-shell {
+  width: 100%; height: 100%;
+  --accent-1: oklch(0.78 0.14 var(--accent-hue, 240));
+  --accent-2: oklch(0.55 0.18 var(--accent-hue, 240));
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes brainPulse {
+  0%   { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+.brain-pulse   { animation: brainPulse 2.4s ease-out infinite; }
+.brain-pulse-2 { animation-delay: 1.2s; }
+.brain-core    { animation: brainBreathe 4s ease-in-out infinite; }
+@keyframes brainBreathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { display: inline-block; animation: spin .9s linear infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.caret { animation: blink 1s step-end infinite; margin-left: 4px; color: var(--accent-1); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 5px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); border: 2px solid transparent; background-clip: content-box; }
+.new-pill { animation: slideIn .5s cubic-bezier(.2,.8,.2,1) backwards; }
+
+/* template thumbnail for super_inline_html, harmless otherwise */
+</style>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#0A0B0F"/>
+  <circle cx="50" cy="50" r="22" fill="none" stroke="#5b8cff" stroke-width="2"/>
+  <circle cx="50" cy="50" r="10" fill="#5b8cff"/>
+  <text x="50" y="86" font-family="monospace" font-size="9" fill="#9ca3af" text-anchor="middle">MAXER</text>
+</svg>
+</template>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="boot.jsx"></script>
+<script type="text/babel" src="view-hunt.jsx"></script>
+<script type="text/babel" src="view-deploy.jsx"></script>
+<script type="text/babel" src="view-agent.jsx"></script>
+<script type="text/babel" src="view-brain.jsx"></script>
+<script type="text/babel" src="view-vault.jsx"></script>
+<script type="text/babel" src="view-multi.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+<script type="text/babel">
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App/>);
+</script>
+</body>
+</html>
