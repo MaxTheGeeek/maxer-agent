@@ -1,9 +1,70 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
 }
 
-body {
-  @apply bg-slate-900 text-slate-100 font-sans antialiased;
+:root {
+  --bg:        #0A0B0F;
+  --bg-2:      #0E1015;
+  --surf-1:    rgba(255,255,255,0.025);
+  --surf-2:    rgba(255,255,255,0.045);
+  --border-1:  rgba(255,255,255,0.06);
+  --border-2:  rgba(255,255,255,0.10);
+  --fg-1:      rgba(240,242,247,0.95);
+  --fg-2:      rgba(200,205,215,0.78);
+  --fg-3:      rgba(150,158,172,0.58);
+  --accent-1:  oklch(0.78 0.14 240);
+  --accent-2:  oklch(0.55 0.18 240);
+  --ui:   "Inter Tight", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
+
+* { box-sizing: border-box; }
+html, body, #root {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  background: #050608;
+  color: var(--fg-1);
+  font-family: var(--ui);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+button { font-family: inherit; }
+.tbtn:hover:not(:disabled) { background: rgba(255,255,255,0.07) !important; }
+.tbtn:disabled { opacity: 0.5; }
+
+.root-shell {
+  width: 100%; height: 100%;
+  --accent-1: oklch(0.78 0.14 var(--accent-hue, 240));
+  --accent-2: oklch(0.55 0.18 var(--accent-hue, 240));
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes brainPulse {
+  0%   { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+.brain-pulse   { animation: brainPulse 2.4s ease-out infinite; }
+.brain-pulse-2 { animation-delay: 1.2s; }
+.brain-core    { animation: brainBreathe 4s ease-in-out infinite; }
+@keyframes brainBreathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { display: inline-block; animation: spin .9s linear infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.caret { animation: blink 1s step-end infinite; margin-left: 4px; color: var(--accent-1); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 5px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); border: 2px solid transparent; background-clip: content-box; }
+
+.new-pill { animation: slideIn .5s cubic-bezier(.2,.8,.2,1) backwards; }
